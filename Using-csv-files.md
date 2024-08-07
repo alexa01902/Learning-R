@@ -34,10 +34,11 @@ write.csv(mtcars, file = "mtcars.csv")
 ## How do I load a .csv file in R?
 
 To load a .csv file from your computer into R, you can use the command read.csv. For example, using the file created in the example above:
-
+```r
 setwd("C:/Downloads") 
 
 mtcars_from_csv <- read.csv('mtcars.csv')
+```
 
 ## Why is this important?
 
