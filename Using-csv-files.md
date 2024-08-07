@@ -44,3 +44,5 @@ mtcars_from_csv <- read.csv('mtcars.csv')
 
 Input/Output (I/O) is an important concept when working with programming. It enables us to work with datasets acquired externally (such as downloaded from the internet) but also to later export again to share results with others.
 
+## Video
+Here is a video that summarize everything https://www.youtube.com/watch?v=rAUjiUFxAAQ. 
