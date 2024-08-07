@@ -5,13 +5,13 @@ Csv stands for 'comma seperated values' and it is a text file that uses commaas 
 ## What does a .csv file look like?
 An example of what a .csv file could look like if you opend it with a text editor is
 
-"ID","Name","Age","Grade"
-1,"John Smith",15,"A"
-2,"Jane Doe",16,"B"
-3,"Emily Davis",14,"A-"
-4,"Michael Brown",15,"B+"
-5,"Sarah Wilson",16,"A"
-6,"David Lee",14,"B-"
+"ID","Name","Age","Grade"  
+1,"John Smith",15,"A"  
+2,"Jane Doe",16,"B"  
+3,"Emily Davis",14,"A-"  
+4,"Michael Brown",15,"B+"  
+5,"Sarah Wilson",16,"A"  
+6,"David Lee",14,"B-"  
 
 Each comma shows a seperation to a new column.
 
