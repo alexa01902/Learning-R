@@ -61,3 +61,37 @@ or relative frequency
 ggplot(penguins, aes(x = island, fill = species)) +
   geom_bar(position = "fill")
 ```
+#### Two numerical variables
+Scatterplots is the most commonly used plots for visualizing the relationship between two numerical variables. 
+```r
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+```
+#### Three or more variables
+As mentioned ealier, we can incorporate more variables into a plot by mapping them  to additional aesthetics.
+```r
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = island))
+```
+However adding too many aesthetic mappings to a plot makes it cluttered and difficult to make sense of. Another way, which is particularly useful for categorical variables, is to split your plot into facets, subplots that each display one subset of the data.
+
+To facet your plot by a single variable, use facet_wrap(). The first argument of facet_wrap() is a formula3, which you create with ~ followed by a variable name. The variable that you pass to facet_wrap() should be categorical.
+```r
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species)) +
+  facet_wrap(~island)
+```
+
+### Saving your plot
+Use ggsave()
+```r
+ggplot(penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point()
+ggsave(filename = "penguin-plot.png")
+```
+
+## Data transformation
+
+
+
+
