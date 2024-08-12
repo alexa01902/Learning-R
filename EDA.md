@@ -92,6 +92,82 @@ ggsave(filename = "penguin-plot.png")
 
 ## Data transformation
 
+### dplyr
+We are going to explore the dplyr package for data transformation. 
+dplyr’s verbs are organized into four groups based on what they operate on: rows, columns, groups, or tables. In the following sections you’ll learn the most important verbs for rows, columns, and groups.
 
+#### Rows
+
+##### filter()
+filter() allows you to keep rows based on the values of the columns1. The first argument is the data frame. The second and subsequent arguments are the conditions that must be true to keep the row. For example, we could find all flights that departed more than 120 minutes (two hours) late:
+
+```r
+flights |> 
+  filter(dep_delay > 120)
+
+flights |> 
+  filter(month %in% c(1, 2))
+```
+When you run filter() dplyr executes the filtering operation, creating a new data frame, and then prints it. It doesn’t modify the existing flights dataset because dplyr functions never modify their inputs. To save the result, you need to use the assignment operator, <-.
+
+##### arrange()
+arrange() changes the order of the rows based on the value of the columns. It takes a data frame and a set of column names (or more complicated expressions) to order by. If you provide more than one column name, each additional column will be used to break ties in the values of preceding columns. For example, the following code sorts by the departure time, which is spread over four columns. We get the earliest years first, then within a year the earliest months, etc.
+
+```r
+flights |> 
+  arrange(year, month, day, dep_time)
+```
+You can use desc() on a column inside of arrange() to re-order the data frame based on that column in descending (big-to-small) order. For example, this code orders flights from most to least delayed:
+
+```r
+flights |> 
+  arrange(desc(dep_delay))
+```
+##### distinct()
+distinct() finds all the unique rows in a dataset. Most of the time, however, you’ll want the distinct combination of some variables, so you can also optionally supply column names:
+
+```r
+# Remove duplicate rows, if any
+flights |> 
+  distinct()
+
+# Find all unique origin and destination pairs
+flights |> 
+  distinct(origin, dest)
+```
+##### Columns
+
+###### mutate()
+The job of mutate() is to add new columns that are calculated from the existing columns.
+```r
+flights |> 
+  mutate(
+    gain = dep_delay - arr_delay,
+    speed = distance / air_time * 60
+  )
+```
+
+##### select()
+
+It’s not uncommon to get datasets with hundreds or even thousands of variables. In this situation, the first challenge is often just focusing on the variables you’re interested in. select() allows you to rapidly zoom in on a useful subset using operations based on the names of the variables:
+
+```r
+# Select columns by name
+flights |> 
+  select(year, month, day)
+
+# Select all columns between year and day (inclusive):
+flights |> 
+  select(year:day)
+
+# Select all columns except those from year to day (inclusive):
+flights |> 
+  select(!year:day)
+
+# Select all columns that are characters:
+flights |> 
+  select(where(is.character))
+
+#### Groups
 
 
