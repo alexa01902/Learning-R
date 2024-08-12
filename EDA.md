@@ -167,7 +167,28 @@ flights |>
 # Select all columns that are characters:
 flights |> 
   select(where(is.character))
+```
 
 #### Groups
+##### group_by()
+Use group_by() to divide your dataset into groups meaningful for your analysis:
+```r
+flights |> 
+  group_by(month)
+```
+group_by() doesn’t change the data but, if you look closely at the output, you’ll notice that the output indicates that it is “grouped by” month (Groups: month [12]). This means subsequent operations will now work “by month”. group_by() adds this grouped feature (referred to as class) to the data frame, which changes the behavior of the subsequent verbs applied to the data.
+
+##### summarize()
+The most important grouped operation is a summary, which, if being used to calculate a single summary statistic, reduces the data frame to have a single row for each group. You can create any number of summaries in a single call to summarize(). 
+```r
+flights |> 
+  group_by(month) |> 
+  summarize(
+    avg_delay = mean(dep_delay, na.rm = TRUE), 
+    n = n()
+  )
+```
+
+
 
 
